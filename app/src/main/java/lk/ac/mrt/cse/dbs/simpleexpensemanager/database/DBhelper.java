@@ -9,10 +9,10 @@ import android.support.annotation.Nullable;
 
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.ExpenseType;
 
-public class DBHelper extends SQLiteOpenHelper {
+public class DBhelper extends SQLiteOpenHelper {
 
     private static final String  DATABASE_NAME = "200501P.db";
-    public DBHelper(@Nullable Context context) {
+    public DBhelper(@Nullable Context context) {
         super(context,  DATABASE_NAME, null ,1);
     }
 
