@@ -116,10 +116,11 @@ public class ManageExpensesFragment extends Fragment implements View.OnClickList
                                         dialog.cancel();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                    }
+
                 }
                 amount.getText().clear();
                 break;
         }
     }
+}
 }

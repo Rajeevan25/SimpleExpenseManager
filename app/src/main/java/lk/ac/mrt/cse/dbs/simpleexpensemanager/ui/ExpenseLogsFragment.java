@@ -15,7 +15,7 @@
  */
 
 package lk.ac.mrt.cse.dbs.simpleexpensemanager.ui;
-
+import java.text.ParseException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -60,7 +60,11 @@ public class ExpenseLogsFragment extends Fragment {
         currentExpenseManager = (ExpenseManager) getArguments().get(EXPENSE_MANAGER);
         List<Transaction> transactionList = new ArrayList<>();
         if (currentExpenseManager != null) {
-            transactionList = currentExpenseManager.getTransactionLogs();
+            try {
+                transactionList = currentExpenseManager.getTransactionLogs();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         generateTransactionsTable(rootView, logsTableLayout, transactionList);
         return rootView;
