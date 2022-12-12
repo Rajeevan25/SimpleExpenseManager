@@ -5,7 +5,7 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
-import lk.ac.mrt.cse.dbs.simpleexpensemanager.database.DatabaseHelper;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.database.DBHelper;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.AccountDAO;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.exception.InvalidAccountException;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.Account;
@@ -13,8 +13,8 @@ import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.ExpenseType;
 
 public class PersistentAccountDAO implements AccountDAO {
 
-    private final DatabaseHelper databaseHelper;
-    public PersistentAccountDAO(DatabaseHelper db) {
+    private final DBHelper databaseHelper;
+    public PersistentAccountDAO(DBHelper db) {
         this.databaseHelper = db;
     }
 

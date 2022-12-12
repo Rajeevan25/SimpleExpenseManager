@@ -6,10 +6,10 @@ import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.AccountDAO;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.TransactionDAO;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl.PersistentAccountDAO;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl.PersistentTransactionDAO;
-import lk.ac.mrt.cse.dbs.simpleexpensemanager.database.DatabaseHelper;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.database.DBHelper;
 
 public class PersistentExpenseManager extends ExpenseManager{
-    private DatabaseHelper databaseHelper;
+    private DBHelper databaseHelper;
     public PersistentExpenseManager(Context c) {
         setup(c);
     }
@@ -18,7 +18,7 @@ public class PersistentExpenseManager extends ExpenseManager{
     @Override
     public void setup(Context c) {
 
-        databaseHelper = new DatabaseHelper(c);
+        databaseHelper = new DBHelper(c);
 
         TransactionDAO persistentTransactionDAO = new PersistentTransactionDAO(databaseHelper);
         setTransactionsDAO(persistentTransactionDAO);

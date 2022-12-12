@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import lk.ac.mrt.cse.dbs.simpleexpensemanager.database.DatabaseHelper;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.database.DBHelper;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.TransactionDAO;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.ExpenseType;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.Transaction;
 
 public class PersistentTransactionDAO implements TransactionDAO {
-    private DatabaseHelper dataBaseHelper;
+    private DBHelper dataBaseHelper;
 
-    public PersistentTransactionDAO(DatabaseHelper db) {
+    public PersistentTransactionDAO(DBHelper db) {
         this.dataBaseHelper = db;
     }
 
