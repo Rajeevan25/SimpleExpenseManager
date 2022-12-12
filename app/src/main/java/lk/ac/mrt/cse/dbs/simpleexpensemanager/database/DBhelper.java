@@ -29,11 +29,11 @@ public class DBhelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertAccount(String accNO, String bankName, String accountHolderName, double balance){
+    public boolean insertAccount(String accountNO, String bankName, String accountHolderName, double balance){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Accounts WHERE accNO = ?", new String[]{accNO});
+        Cursor cursor     = db.rawQuery("SELECT * FROM Accounts WHERE accNO = ?", new String[]{accountNO});
         ContentValues cValue = new ContentValues();
-        cValue.put("accNo",accNO);
+        cValue.put("accNo",accountNO);
         cValue.put("bankName",bankName);
         cValue.put("accountHolderName",accountHolderName);
         cValue.put("balance",balance);
@@ -47,22 +47,36 @@ public class DBhelper extends SQLiteOpenHelper {
         }
         return false;
     }
-    public Cursor getAccount(String accNO){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Accounts WHERE accNO = ?", new String[]{accNO});
-        cursor.moveToFirst();
-        return cursor;
-    }
-
     public Cursor getAccounts(){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Accounts", null);
         return c;
     }
+    public Cursor getAccount(String accountNO){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Accounts WHERE accNO = ?", new String[]{accountNO});
+        cursor.moveToFirst();
+        return cursor;
+    }
+    public boolean deleteAccount(String accNO) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM ACCOUNT WHERE acc_no = ?", new String[]{accNO});
+        if (c.getCount() > 0) {
+            long result = db.delete("Accounts", "accNO=?", new String[]{accNO});
+            if (result == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
 
     public Cursor getAccountNum(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c     = db.rawQuery("SELECT accNO FROM Accounts", null);
+        Cursor c  = db.rawQuery("SELECT accNO FROM Accounts", null);
         return c;
     }
 
@@ -83,20 +97,7 @@ public class DBhelper extends SQLiteOpenHelper {
             return false;
         }
     }
-    public boolean deleteAccount(String accNO) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM ACCOUNT WHERE acc_no = ?", new String[]{accNO});
-        if (c.getCount() > 0) {
-            long result = db.delete("Accounts", "accNO=?", new String[]{accNO});
-            if (result == -1) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
-    }
+
     public boolean insertTransaction(String date, String accNO, ExpenseType expenseType, double amount){
         ContentValues cValues = new ContentValues();
         cValues.put("accNO", accNO);
